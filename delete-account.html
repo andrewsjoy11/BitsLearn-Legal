@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>bitsLearn – Delete Account</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@300;500;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --brand: #1A47B8;
+      --brand-light: #EEF2FF;
+      --accent: #EF4444;
+      --accent-light: #FEF2F2;
+      --text: #0F172A;
+      --muted: #64748B;
+      --border: #E2E8F0;
+      --bg: #FAFAFA;
+      --white: #FFFFFF;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.8;
+      min-height: 100vh;
+    }
+
+    header {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 0;
+    }
+
+    .header-inner {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo {
+      font-family: 'Fraunces', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--brand);
+      letter-spacing: -0.5px;
+      text-decoration: none;
+    }
+
+    .logo span { color: #F97316; }
+
+    .container {
+      max-width: 600px;
+      margin: 48px auto;
+      padding: 0 24px 80px;
+    }
+
+    .warning-box {
+      background: var(--accent-light);
+      border: 1px solid #FECACA;
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-bottom: 32px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .warning-icon {
+      font-size: 22px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .warning-box p {
+      color: #991B1B;
+      font-size: 14px;
+      margin: 0;
+    }
+
+    .warning-box strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 15px;
+    }
+
+    h1 {
+      font-family: 'Fraunces', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 36px;
+    }
+
+    .what-gets-deleted {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-bottom: 32px;
+    }
+
+    .what-gets-deleted h3 {
+      font-size: 13px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .what-gets-deleted ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .what-gets-deleted ul li {
+      padding: 6px 0;
+      font-size: 14px;
+      color: #334155;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .what-gets-deleted ul li:last-child {
+      border-bottom: none;
+    }
+
+    .what-gets-deleted ul li::before {
+      content: '✕';
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .form-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+    }
+
+    .form-card h2 {
+      font-family: 'Fraunces', serif;
+      font-size: 20px;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+
+    .form-card .form-desc {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    .field {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 10px 14px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--bg);
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--brand);
+      background: var(--white);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+
+    .checkbox-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .checkbox-row input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      margin-top: 3px;
+      flex-shrink: 0;
+      accent-color: var(--accent);
+    }
+
+    .checkbox-row label {
+      font-size: 13px;
+      color: #475569;
+      margin: 0;
+      cursor: pointer;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 13px;
+      background: var(--accent);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .submit-btn:hover { background: #DC2626; }
+    .submit-btn:active { transform: scale(0.99); }
+
+    .success-msg {
+      display: none;
+      background: #F0FDF4;
+      border: 1px solid #BBF7D0;
+      border-radius: 12px;
+      padding: 20px 24px;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .success-msg .check { font-size: 32px; margin-bottom: 8px; }
+    .success-msg h3 { color: #166534; font-size: 16px; margin-bottom: 4px; }
+    .success-msg p { color: #166534; font-size: 13px; }
+
+    .note {
+      font-size: 12px;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    footer {
+      background: #0F172A;
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+      padding: 24px;
+      font-size: 12px;
+    }
+
+    footer a { color: rgba(255,255,255,0.6); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">bits<span>Learn</span></a>
+  </div>
+</header>
+
+<div class="container">
+  <h1>Delete My Account</h1>
+  <p class="subtitle">Submit a request below and we'll process it within 7 business days.</p>
+
+  <div class="what-gets-deleted">
+    <h3>What will be permanently deleted</h3>
+    <ul>
+      <li>Your account and login credentials</li>
+      <li>Your learning progress and watch history</li>
+      <li>Your quiz scores and performance data</li>
+      <li>Your profile information</li>
+    </ul>
+  </div>
+
+  <div class="warning-box">
+    <div class="warning-icon">⚠️</div>
+    <div>
+      <strong>This action is permanent</strong>
+      <p>Once your account is deleted, your data cannot be recovered. Make sure you no longer need access to your progress or history before submitting.</p>
+    </div>
+  </div>
+
+  <div class="form-card">
+    <h2>Submit Deletion Request</h2>
+    <p class="form-desc">We'll send a confirmation to your registered email before deleting your account.</p>
+
+    <form id="deleteForm" onsubmit="handleSubmit(event)">
+      <div class="field">
+        <label for="email">Registered Email Address *</label>
+        <input type="email" id="email" placeholder="you@example.com" required />
+      </div>
+
+      <div class="field">
+        <label for="reason">Reason for Deletion (optional)</label>
+        <select id="reason">
+          <option value="">Select a reason...</option>
+          <option>I no longer use the app</option>
+          <option>I have a duplicate account</option>
+          <option>Privacy concerns</option>
+          <option>I want to start fresh</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="notes">Additional Notes (optional)</label>
+        <textarea id="notes" placeholder="Anything else you'd like us to know..."></textarea>
+      </div>
+
+      <div class="checkbox-row">
+        <input type="checkbox" id="confirm" required />
+        <label for="confirm">I understand that deleting my account is permanent and all my data will be removed.</label>
+      </div>
+
+      <button type="submit" class="submit-btn">Submit Deletion Request</button>
+    </form>
+
+    <div class="success-msg" id="successMsg">
+      <div class="check">✅</div>
+      <h3>Request Received</h3>
+      <p>We've received your deletion request. You'll get a confirmation at your email within 24 hours, and your account will be deleted within 7 business days.</p>
+    </div>
+  </div>
+
+  <p class="note">
+    Questions? Email us at <a href="mailto:andrewsjoy11@gmail.com">andrewsjoy11@gmail.com</a>
+    · <a href="index.html">Privacy Policy & Terms</a>
+  </p>
+</div>
+
+<footer>
+  &copy; 2025 bitsLearn · Made in India 🇮🇳
+</footer>
+
+<script>
+  function handleSubmit(e) {
+    e.preventDefault();
+    const email = document.getElementById('email').value;
+    const reason = document.getElementById('reason').value;
+    const notes = document.getElementById('notes').value;
+
+    // Build mailto link to send request to support email
+    const subject = encodeURIComponent('Account Deletion Request – bitsLearn');
+    const body = encodeURIComponent(
+      `Account Deletion Request\n\nEmail: ${email}\nReason: ${reason || 'Not specified'}\nNotes: ${notes || 'None'}\n\nPlease delete my account and all associated data.`
+    );
+    window.location.href = `mailto:andrewsjoy11@gmail.com?subject=${subject}&body=${body}`;
+
+    document.getElementById('deleteForm').style.display = 'none';
+    document.getElementById('successMsg').style.display = 'block';
+  }
+</script>
+
+</body>
+</html>
