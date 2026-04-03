@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>bitsLearn – Feedback</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@300;500;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --brand: #1A47B8;
+      --brand-light: #EEF2FF;
+      --accent: #F97316;
+      --text: #0F172A;
+      --muted: #64748B;
+      --border: #E2E8F0;
+      --bg: #FAFAFA;
+      --white: #FFFFFF;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.8;
+      min-height: 100vh;
+    }
+
+    header {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 0;
+    }
+
+    .header-inner {
+      max-width: 620px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo {
+      font-family: 'Fraunces', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--brand);
+      letter-spacing: -0.5px;
+      text-decoration: none;
+    }
+
+    .logo span { color: var(--accent); }
+
+    .badge {
+      font-size: 11px;
+      font-weight: 500;
+      background: var(--brand-light);
+      color: var(--brand);
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, var(--brand) 0%, #1e3a8a 100%);
+      padding: 48px 24px 40px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(24px, 4vw, 36px);
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      color: rgba(255,255,255,0.75);
+      font-size: 14px;
+      max-width: 420px;
+      margin: 0 auto;
+    }
+
+    /* Container */
+    .container {
+      max-width: 620px;
+      margin: 40px auto;
+      padding: 0 24px 80px;
+    }
+
+    /* Star rating */
+    .rating-section {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .rating-label {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .stars {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .star {
+      font-size: 40px;
+      cursor: pointer;
+      color: #E2E8F0;
+      transition: color 0.15s, transform 0.1s;
+      user-select: none;
+    }
+
+    .star:hover,
+    .star.active { color: #FBBF24; }
+
+    .star:hover { transform: scale(1.15); }
+
+    .rating-text {
+      font-size: 13px;
+      color: var(--muted);
+      min-height: 20px;
+      transition: all 0.2s;
+    }
+
+    /* Form card */
+    .form-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+    }
+
+    .field { margin-bottom: 20px; }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    label .optional {
+      font-weight: 400;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 10px 14px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--bg);
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--brand);
+      background: var(--white);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    /* Category chips */
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .chip {
+      padding: 6px 14px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      font-size: 13px;
+      cursor: pointer;
+      background: var(--bg);
+      color: var(--muted);
+      transition: all 0.15s;
+      user-select: none;
+    }
+
+    .chip.selected {
+      background: var(--brand-light);
+      border-color: var(--brand);
+      color: var(--brand);
+      font-weight: 500;
+    }
+
+    /* Submit */
+    .submit-btn {
+      width: 100%;
+      padding: 13px;
+      background: var(--brand);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .submit-btn:hover { background: #1539a0; }
+    .submit-btn:active { transform: scale(0.99); }
+
+    /* Success */
+    .success-msg {
+      display: none;
+      background: #F0FDF4;
+      border: 1px solid #BBF7D0;
+      border-radius: 16px;
+      padding: 40px 28px;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .success-msg .icon { font-size: 48px; margin-bottom: 12px; }
+    .success-msg h3 { font-family: 'Fraunces', serif; font-size: 22px; color: #166534; margin-bottom: 6px; }
+    .success-msg p { color: #166534; font-size: 14px; }
+
+    .note {
+      font-size: 12px;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .note a { color: var(--brand); text-decoration: none; }
+    .note a:hover { text-decoration: underline; }
+
+    footer {
+      background: #0F172A;
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+      padding: 24px;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">bits<span>Learn</span></a>
+    <div class="badge">Beta Feedback</div>
+  </div>
+</header>
+
+<div class="hero">
+  <h1>Share Your Feedback</h1>
+  <p>You're one of our early testers. Your feedback shapes the future of bitsLearn.</p>
+</div>
+
+<div class="container">
+
+  <!-- Star Rating -->
+  <div class="rating-section">
+    <div class="rating-label">How would you rate your overall experience?</div>
+    <div class="stars" id="stars">
+      <span class="star" data-val="1">★</span>
+      <span class="star" data-val="2">★</span>
+      <span class="star" data-val="3">★</span>
+      <span class="star" data-val="4">★</span>
+      <span class="star" data-val="5">★</span>
+    </div>
+    <div class="rating-text" id="ratingText">Tap a star to rate</div>
+  </div>
+
+  <!-- Feedback Form -->
+  <div class="form-card" id="feedbackForm">
+
+    <div class="field">
+      <label for="name">Your Name <span class="optional">(optional)</span></label>
+      <input type="text" id="name" placeholder="e.g. Arjun" />
+    </div>
+
+    <div class="field">
+      <label for="email">Email Address <span class="optional">(optional)</span></label>
+      <input type="email" id="email" placeholder="so we can follow up if needed" />
+    </div>
+
+    <div class="field">
+      <label>What are you giving feedback on?</label>
+      <div class="chips" id="categoryChips">
+        <div class="chip" onclick="toggleChip(this)">Video Quality</div>
+        <div class="chip" onclick="toggleChip(this)">App Speed</div>
+        <div class="chip" onclick="toggleChip(this)">Content</div>
+        <div class="chip" onclick="toggleChip(this)">UI / Design</div>
+        <div class="chip" onclick="toggleChip(this)">Login / Signup</div>
+        <div class="chip" onclick="toggleChip(this)">Bugs</div>
+        <div class="chip" onclick="toggleChip(this)">Other</div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="feedback">What's your feedback? *</label>
+      <textarea id="feedback" placeholder="Tell us what you liked, what needs improvement, or any bugs you found..." required></textarea>
+    </div>
+
+    <div class="field">
+      <label for="suggestion">Any features you'd love to see? <span class="optional">(optional)</span></label>
+      <textarea id="suggestion" placeholder="e.g. dark mode, offline videos, chapter-wise tests..." style="min-height:70px;"></textarea>
+    </div>
+
+    <button class="submit-btn" onclick="handleSubmit()">Submit Feedback</button>
+  </div>
+
+  <div class="success-msg" id="successMsg">
+    <div class="icon">🎉</div>
+    <h3>Thank you!</h3>
+    <p>Your feedback has been sent. We really appreciate you taking the time — it helps us build a better bitsLearn.</p>
+  </div>
+
+  <p class="note">
+    Questions? <a href="mailto:andrewsjoy11@gmail.com">andrewsjoy11@gmail.com</a>
+    · <a href="index.html">Privacy Policy</a>
+  </p>
+</div>
+
+<footer>
+  &copy; 2025 bitsLearn · Made in India 🇮🇳
+</footer>
+
+<script>
+  let selectedRating = 0;
+
+  const ratingLabels = ['', 'Poor', 'Fair', 'Good', 'Great', 'Excellent!'];
+  const stars = document.querySelectorAll('.star');
+
+  stars.forEach(star => {
+    star.addEventListener('click', () => {
+      selectedRating = parseInt(star.dataset.val);
+      updateStars(selectedRating);
+      document.getElementById('ratingText').textContent = ratingLabels[selectedRating] + ' (' + selectedRating + '/5)';
+    });
+
+    star.addEventListener('mouseenter', () => updateStars(parseInt(star.dataset.val)));
+    star.addEventListener('mouseleave', () => updateStars(selectedRating));
+  });
+
+  function updateStars(val) {
+    stars.forEach(s => {
+      s.classList.toggle('active', parseInt(s.dataset.val) <= val);
+    });
+  }
+
+  function toggleChip(el) {
+    el.classList.toggle('selected');
+  }
+
+  function handleSubmit() {
+    const feedback = document.getElementById('feedback').value.trim();
+    if (!feedback) {
+      document.getElementById('feedback').focus();
+      document.getElementById('feedback').style.borderColor = '#EF4444';
+      return;
+    }
+
+    const name = document.getElementById('name').value || 'Anonymous';
+    const email = document.getElementById('email').value || 'Not provided';
+    const suggestion = document.getElementById('suggestion').value || 'None';
+    const rating = selectedRating ? `${selectedRating}/5 (${ratingLabels[selectedRating]})` : 'Not rated';
+
+    const selectedChips = [...document.querySelectorAll('.chip.selected')]
+      .map(c => c.textContent).join(', ') || 'Not specified';
+
+    const subject = encodeURIComponent('bitsLearn Beta Feedback');
+    const body = encodeURIComponent(
+`bitsLearn Beta Feedback
+========================
+Name: ${name}
+Email: ${email}
+Rating: ${rating}
+Category: ${selectedChips}
+
+Feedback:
+${feedback}
+
+Feature Suggestions:
+${suggestion}`
+    );
+
+    window.location.href = `mailto:andrewsjoy11@gmail.com?subject=${subject}&body=${body}`;
+
+    document.getElementById('feedbackForm').style.display = 'none';
+    document.getElementById('successMsg').style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>
